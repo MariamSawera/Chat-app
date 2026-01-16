@@ -81,8 +81,6 @@ export const login = async(req,res) => {
 
 
 
-
-
 // logout route
 export const logout = async (req,res) => {
 
@@ -100,6 +98,10 @@ res.status(200).json({message: "Logged out successfully"});
 //update-profile
 
 export const updateProfile = async(req,res) => {
-    
+    try{
+
+    }catch {
+        
+    }
 }
 
