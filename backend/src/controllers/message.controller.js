@@ -22,16 +22,36 @@ export const getMessages = async(req, res) => {
         const messages = await Message.find({
             $or:[
                 {senderId:myId, receiverId:userToChatId},
-                {senderId:userToChatId, receiverId:myId}
-                
+                {senderId:userToChatId, receiverId:myId}          
             ]
         })
-
         res.status(200).json(messages)
     }catch(error){
         console.error("Error in getMessages:", error.message);
         res.status(500).json({error: "Internal Server error"});
 
+    }
+}
+
+export const sendMessages = async(req, res) => {
+    try{
+
+        const {text, image} = req.body;
+        const{ id: receiverId} = req.params;
+        const senderId = req.user._Id;
+
+        let imageUrl;
+
+        if(image){
+            const uploadResponse = await cloudinary.uploader.upload(image);
+            imageUrl = uploadResponse.secure_url;
+        }
+
+    }catch(err){
+        console.error("Error in sendMessages:", error.message);
+        res.status(500).json({error: "Internal Server error"});
+
 
     }
 }
+
