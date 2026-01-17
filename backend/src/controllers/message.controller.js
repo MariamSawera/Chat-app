@@ -54,8 +54,14 @@ export const sendMessages = async(req, res) => {
             image:imageUrl,
         });
 
+        await newMessage.save();
+
+        //todo realtime functionality goes here => socket.io
+
+        res.status(201).json(newMessage)
+
     }catch(err){
-        console.error("Error in sendMessages:", error.message);
+        console.error("Error in sendMessages:", err.message);
         res.status(500).json({error: "Internal Server error"});
 
 
