@@ -55,3 +55,6 @@ export const sendMessages = async(req, res) => {
     }
 }
 
+// git add .
+// git commit -m "s"
+// git push
