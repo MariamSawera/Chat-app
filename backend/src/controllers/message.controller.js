@@ -47,6 +47,13 @@ export const sendMessages = async(req, res) => {
             imageUrl = uploadResponse.secure_url;
         }
 
+        const newMessage = newMessage({
+            senderId,
+            receiverId,
+            text,
+            image:imageUrl,
+        });
+
     }catch(err){
         console.error("Error in sendMessages:", error.message);
         res.status(500).json({error: "Internal Server error"});
