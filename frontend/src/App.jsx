@@ -19,8 +19,10 @@ import { useThemeStore } from "./store/useThemeStore.js"
 // isCheckingAuth → loading state
 
 export default function App() {
-  const {authUser, checkAuth, isCheckingAuth} = useAuthStore()
+  const {authUser, checkAuth, isCheckingAuth, onlineUsers} = useAuthStore()
   const {theme} = useThemeStore();
+
+  console.log({onlineUsers})
 
   useEffect(() => {
     checkAuth();
@@ -36,7 +38,7 @@ export default function App() {
 
 
   return (
-    <div data-theme="theme">
+    <div data-theme={theme}>
       <Navbar/>
       <Routes>
         <Route path="/" element={authUser? <HomePage/> : <Navigate to="/login" />} />
